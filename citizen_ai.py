@@ -14,7 +14,7 @@ Original file is located at
 from transformers import AutoModelForCausalLM, AutoTokenizer, set_seed
 import torch
 
-model_path="ibm-granite/granite-3.2-2b-instruct"
+model_path="ibm-granite/granite-3.3-2b-instruct"
 device="cuda"
 model = AutoModelForCausalLM.from_pretrained(
         model_path,
@@ -25,7 +25,7 @@ tokenizer = AutoTokenizer.from_pretrained(
         model_path
 )
 
-conv = [{"role": "user", "content":"You have 10 liters of a 30% acid solution. How many liters of a 70% acid solution must be added to achieve a 50% acid mixture?"}]
+conv = [{"role": "user", "content":"Take a current environmental issue and work backward to devise an innovative prevention strategy that could have averted the problem."}]
 
 input_ids = tokenizer.apply_chat_template(conv, return_tensors="pt", thinking=True, return_dict=True, add_generation_prompt=True).to(device)
 
